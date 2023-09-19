@@ -28,9 +28,7 @@ function getCurrentUrlNoQuery() {
 }
 
 function get404Link() {
-	// Return 404.html/?l=https://kevingleaosn.me/link/?l=badlink
-	const badHref = encodeURI(window.location.href);
-	return `${getCurrentUrlNoQuery()}/${config.url404}?${config.queryParam}=${badHref}`;
+	return `artale.io`;
 }
 
 function getQueryParam(param, opt_url) {
