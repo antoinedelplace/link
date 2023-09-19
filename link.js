@@ -65,9 +65,6 @@ function createFunctionWithTimeout(callback) {
 // https://developers.google.com/analytics/devguides/migration/ua/analyticsjs-to-gtagjs?hl=fr
 function handleLinkClicks(event) {
 	const url = getForwardUrl();
-	gtag('config', config.gaID, {
-	  'custom_map': {'metric<Index>': 'metric_name'}
-	});
 	gtag('event', 'link', {
 		'url': url,
 		"transport_type":"beacon",
