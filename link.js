@@ -13,7 +13,7 @@
 // CHANGE THE CONFIG: At a minimum, set your Google Analytics ID in the `gaID` field.
 // Note: The 404 can be updated to provide a default landing page for invalid requests.
 const config = {
-	gaID: 'UA-407356121', // CHANGE ME: Google Analytics ID (https://support.google.com/analytics/answer/1008080)
+	gaID: 'G-3G5Q8LFQ4V', // CHANGE ME: Google Analytics ID (https://support.google.com/analytics/answer/1008080)
 	repoName: "link",      // The name of the github repository
 	queryParam: "l",       // The query parameter with forward URL: `me.com/link/?l=url
 	url404: "404.html",    // The 404 page to forward to: `404.hmtl?badAttemptHref`
