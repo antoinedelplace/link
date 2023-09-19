@@ -10,22 +10,11 @@
 * These requests will be forwarded after 1 second.
 */
 
-// CHANGE THE CONFIG: At a minimum, set your Google Analytics ID in the `gaID` field.
-// Note: The 404 can be updated to provide a default landing page for invalid requests.
 const config = {
-	gaID: 'G-3G5Q8LFQ4V', // CHANGE ME: Google Analytics ID (https://support.google.com/analytics/answer/1008080)
-	repoName: "link",      // The name of the github repository
+	gaID: 'G-3G5Q8LFQ4V',
 	queryParam: "l",       // The query parameter with forward URL: `me.com/link/?l=url
-	url404: "404.html",    // The 404 page to forward to: `404.hmtl?badAttemptHref`
 	timeout: 1000,         // Timeout until redirect, used if GA is blocked by browser (default 1s)
 };
-
-function getCurrentUrlNoQuery() {
-	const currHref = window.location.href;
-	const repoFolder = "/"+config.repoName;
-	const idx = currHref.indexOf(repoFolder) + repoFolder.length;
-	return currHref.substring(0, idx); 
-}
 
 function get404Link() {
 	return `artale.io`;
@@ -73,13 +62,18 @@ function createFunctionWithTimeout(callback) {
 }
 
 // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
+// https://developers.google.com/analytics/devguides/migration/ua/analyticsjs-to-gtagjs?hl=fr
 function handleLinkClicks(event) {
 	const url = getForwardUrl();
-	ga('send', 'event', 'link', 'click', url, {
-		transport: 'beacon',
-		nonInteraction: true,
-		hitCallback: createFunctionWithTimeout(function(){
+	gtag('config', config.gaID, {
+	  'custom_map': {'metric<Index>': 'metric_name'}
+	});
+	gtag('event', 'link', {
+		'url': url,
+		"transport_type":"beacon",
+		'non_interaction': true,
+		'event_callback': createFunctionWithTimeout(function(){
 			forwardUrl(url);
-		}),
+		})
 	});
 }
